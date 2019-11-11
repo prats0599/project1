@@ -19,15 +19,13 @@
 <div class="dropdown-divider"></div>
 
 <div class="container results-container">
-    {% set i = [1] %}
 
 
     <div class="row">
 
-      {% for i in range(4) %}
         {% for book in books %}
         <span class="rounded">
-          <div class="col-xs-3 col-md-3 col-sm-3">
+          <div class="col">
 
             <div class="card border-primary mb-3" style="width: 18rem">
               <div class="card-body">
@@ -41,7 +39,6 @@
           </div>
         </span>
         {% endfor %}
-      {% endfor %}
 
     </div>
 </div>
