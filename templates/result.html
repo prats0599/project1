@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block navbar %}
+<a class="navbar-brand ml-auto"> {{session["username"]}} </a>
+<a href="/logout" clas="navbar-brand mr-auto">Log out</a>
+{% endblock %}
+
+
+{% block body %}
+<form class="form-group" action="/" method="post">
+  <h2>Search Results</h2>
+  <button class="btn btn-primary" type="submit" name="goback" value="goback">Go back</button>
+</form>
+
+<div class="dropdown-divider"></div>
+
+<div class="container results-container">
+    {% set i = [1] %}
+
+
+    <div class="row">
+
+      {% for i in range(4) %}
+        {% for book in books %}
+        <span class="rounded">
+          <div class="col-xs-3 col-md-3 col-sm-3">
+
+            <div class="card border-primary mb-3" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">{{book["title"]}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{book["author"]}}</h6>
+                <p class="card-text">published year: {{book["year"]}} <br> ISBN: {{book["isbn"]}}</p>
+                <a href="/book/{{book["isbn"]}}" class="card-link">Go to book page</a>
+              </div>
+            </div>
+
+          </div>
+        </span>
+        {% endfor %}
+      {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <style media="screen">
+      nav a{
+        color: white;
+      }
+      a:not([href]):not([tabindex]) {
+        color: white;
+      }
+      .jumbotron{
+        background: #fffbeb;
+      }
+    </style>
+    <body>
+
+        <nav class="navbar navbar-dark bg-dark">
+          <a class="navbar-brand" href="/">Books</a>
+          {% block navbar %}
+            {% endblock %}
+        </nav>
+
+        {% for message in get_flashed_messages() %}
+          <div class="alert alert-primary" role="alert" align="center">
+              {{message}}
+          </div>
+        {% endfor %}
+
+
+        <div class="container">
+          <div class="mx-auto">
+            {% block body %}
+
+
+            {% endblock %}
+          </div>
+        </div>
+    </body>
+</html>

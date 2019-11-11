@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<p>BOOOOH</p>
+{% endblock %}
+
+{% block navbar %}
+<a class="navbar-brand ml-auto"> {{session["username"]}} </a>
+<a href="/logout" clas="navbar-brand mr-auto">Log out</a>
+{% endblock %}
+
+{% block body %}
+<br><br>
+welcome asshole {{session["username"]}}
+<!-- Search form -->
+<br><br>
+<form action="/" method="post" >
+<br><br>
+<input class="form-control" type="text" placeholder="Search for books by isbn, book title or artist's name" aria-label="Search" name="searchbar" required>
+
+<button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+{% endblock %}

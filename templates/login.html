@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Books
+{% endblock %}
+
+{% block body %}
+
+<form class="form-group" action="/login" method="post" >
+  <br><br><br><br> <br><br><br>
+  <p align="center">login or <a href="/register">create an account</a>:)</p>
+
+  <div class="form-group">
+  <input type="text" autofocus class="form-control" name="username" placeholder="username" required>
+  </div>
+  <div class="form-group">
+  <input type="password" name="password" class="form-control" placeholder="password" required>
+  </div>
+
+    <button class="btn btn-primary" type="submit">Log In</button>
+</form>
+
+
+
+{% endblock %}

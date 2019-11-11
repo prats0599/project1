@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{bookinfo['title']}}
+{% endblock %}
+
+{% block navbar %}
+<a class="navbar-brand ml-auto" color="white">{{session["username"]}}</a>
+<a href="/logout" clas="navbar-brand mr-auto">Log out</a>
+{% endblock %}
+
+{% block body %}
+
+<br>
+<!-- display book details -->
+<div class="jumbotron">
+  <div class="row">
+
+    <div class="col-xs-3 col-md-3 col-sm-3">
+      <img src="http://covers.openlibrary.org/b/isbn/{{bookinfo['isbn']}}-M.jpg" onerror="if (this.src != '../images/noimgavailable.jpg') this.src = '../images/noimgavailable.jpg';">
+    </div>
+
+    <div class="col-xs-6 col-md-6 col-sm-6" align="center">
+      <h1>{{bookinfo['title']}}</h1>
+      <h3>By {{bookinfo['author']}}</h3>
+      <h6>Publication year: {{bookinfo['year']}}</h6>
+      <h6>ISBN: {{bookinfo['isbn']}}</h6>
+    </div>
+
+    <div class="col-xs-3 col-md-3 col-sm-3">
+        <img class="mb-3" src= "https://s.gr-assets.com/assets/press/thumbnail_logo-a0e66b2e27d2b52773b0ddab4e10ea4a.jpg" alt="Goodreads" width="280" height="60">
+        <h6>Average Rating: {{average_rating}}</h6>
+        <h6>Number of ratings: {{review_count}}</h6>
+        <h6><a href="https://www.goodreads.com/search?q={{bookinfo['title']}}">Goodreads page</a></h6>
+
+    </div>
+
+  </div>
+</div>
+<div class="alert alert-dark" role="alert" align="center">
+User reviews
+</div>
+<!-- Reviews form and Display available reviews-->
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-6 col-md-6 col-sm-6">
+      <h4 align="left">Type in your reviews</h4><br>
+      <form class="form-group" action="/book/{{bookinfo['isbn']}}" method="post">
+
+      <label for="rating">Rating:</label>
+      <select class="rating" name="rating">
+        <option value="1">1 stars</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+      </select><br>
+      <label for="comments">Comments:</label><br>
+      <textarea rows="4" cols="50" placeholder="Comments?!" name="comments">
+      </textarea><br>
+      <button class="btn btn-primary" type="submit">Submit </button>
+      </form>
+    </div>
+
+
+    <div class="col-xs-6 col-md-6 col-sm-6">
+      <div class="alert alert-warning" role="alert">
+        <h5><u>Available Reviews</u></h5>
+          {% set i=0 %}
+          {% for i in display %}
+            <h6>{{i[4]}} wrote:</h6>
+            <p class="mb-0">Rating: {{i[2]}}</p>
+            <p >{{i[3]}}</p> <!-- comments-->
+            <div class="dropdown-divider" color="black"></div>
+          {% endfor %}
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}
